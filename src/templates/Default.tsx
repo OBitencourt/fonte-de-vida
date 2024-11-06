@@ -1,5 +1,5 @@
 import React from 'react'
-// import Header from '../components/Header'
+import Header from '../components/Header'
 // import Footer from '../components/Footer'
 
 interface DefaultProps {
@@ -10,7 +10,7 @@ const Default = ({children}: DefaultProps) => {
 
     return (
         <>
-            Header
+            <Header />
             {children}
             Footer
         </>
