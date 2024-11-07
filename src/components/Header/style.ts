@@ -11,6 +11,7 @@ export const StyledHeader = styled.header`
     justify-content: space-between;
     align-items: center;
     padding: 10px 50px;
+    z-index: 2;
 `
 export const Navbar = styled.nav`
     background-color: transparent;    
@@ -22,23 +23,21 @@ export const Navbar = styled.nav`
 
 export const StyledButton = styled.button<{ $isSpecialButton: boolean}>`
     background-color: white;
-    padding: 15px;
+    padding: 20px 20px 24px 20px;
     width: 150px;
     margin: 0 5px;
     border: none;
-    border-bottom: 1px solid #64B5F6;
     font-family: "Quicksand";
     font-weight: 500;
     cursor: pointer;
     transition: all 200ms ease;
-    
+    border: 1px solid transparent;
     
 
     &:hover {
-        background-color: #1976D2;
-        color: white;
-        border: 1px solid #1565C0;
-        border-radius: .3em;
+        transform: scale(1.1);
+        color: #A1887F;
+        border-bottom: 1px solid #A1887F;
     }
 
     ${({ $isSpecialButton }) => $isSpecialButton ? `

@@ -1,10 +1,11 @@
+import Hero from "@/src/sections/Hero"
 
 const Index = () => {
 
     return (
 
         <>
-            Olá
+            <Hero />
         </>
     )
 
