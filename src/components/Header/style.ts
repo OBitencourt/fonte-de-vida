@@ -5,7 +5,6 @@ export const StyledHeader = styled.header`
     width: 100%;
     height: 70px;
     background-color: white;
-    box-shadow: 0px 3px 8px #FFF8E1;
     position: fixed;
     display: flex;
     justify-content: space-between;
@@ -21,30 +20,38 @@ export const Navbar = styled.nav`
     justify-content: space-around;
 `
 
-export const StyledButton = styled.button<{ $isSpecialButton: boolean}>`
+export const StyledButton = styled.button`
     background-color: white;
-    padding: 20px 20px 24px 20px;
-    width: 150px;
+    padding: 20px;
+    width: 145px;
     margin: 0 5px;
     border: none;
-    font-family: "Quicksand";
+    font-family: "Inria Sans";
     font-weight: 500;
     cursor: pointer;
     transition: all 200ms ease;
     border: 1px solid transparent;
     
-
     &:hover {
-        transform: scale(1.1);
-        color: #A1887F;
-        border-bottom: 1px solid #A1887F;
+        text-decoration: underline;
     }
-
-    ${({ $isSpecialButton }) => $isSpecialButton ? `
-        
-    ` : `
-        
-    `}
 `
 
+export const StyledDifButton = styled.button`
+    background-color: #8E7065;
+    padding: 20px;
+    width: 100px;
+    margin: 0 5px;
+    border: none;
+    font-family: "Inria Sans";
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 200ms ease;
+    color: white;
+    border-radius: 12px;
+
+    &:hover {
+        background-color: #765D54;
+    }
+`
 

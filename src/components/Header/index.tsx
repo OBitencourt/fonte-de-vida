@@ -1,4 +1,4 @@
-import { Navbar, StyledButton, StyledHeader } from "./style"
+import { Navbar, StyledButton, StyledHeader, StyledDifButton } from "./style"
 import Image from "next/image"
 
 const Header = () => {
@@ -6,34 +6,32 @@ const Header = () => {
     return (
         <>
             <StyledHeader>
-                
                 <Image 
-                    width={55}
-                    height={55}
-                    alt="logo"
-                    src='/images/logo.png'
-                />
-
+                    src='/images/logo-header.png'
+                    height={90}
+                    width={90}
+                    alt='logo'
+                />             
                 <Navbar>
-                    <StyledButton $isSpecialButton>
-                        Versículo do Dia
+                    <StyledButton>
+
+                        Versículo do Dia  
                     </StyledButton>
-                    <StyledButton 
-                        $isSpecialButton={false}
-                    >
-                        Estudos
-                    </StyledButton>
-                    <StyledButton 
-                        $isSpecialButton={false}
-                    >
+                    <StyledButton>
+
                         Planos de Leitura
                     </StyledButton>
-                    <StyledButton
-                        $isSpecialButton={false}
-                    > 
-                        Mapa
+                    <StyledButton>
+
+                        Estudos 
                     </StyledButton>
-                </Navbar>
+                    <StyledDifButton>
+                        Login
+                    </StyledDifButton>
+                    <StyledDifButton>
+                        Sign In
+                    </StyledDifButton>
+                </Navbar>   
             </StyledHeader>
         </>
     )
