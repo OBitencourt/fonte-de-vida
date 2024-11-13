@@ -1,41 +1,36 @@
 import { Container, Typography } from "@mui/material"
-import { HeroSection, HorizontalBox, StyledButton, VerticalBox } from "./style"
+import { HeroSection, StyledButton } from "./style"
 
 const Hero = () => {
     return (
         <>
             <HeroSection>
                 <Container
-                    maxWidth='lg'
+                    maxWidth='sm'
+                    sx={{
+                        height: '100vh',
+                        display: 'flex',
+                        flexDirection: 'column',
+                        justifyContent: 'center',
+                        alignItems: 'center'
+                    }}
                 >
-                    <HorizontalBox>
-                        <Typography
-                            align="left"
-                            fontSize={20}
-                            sx={{
-                                fontFamily: "Playfair Display"
-                            }}
-                        >
-                           Nossa missão é tornar a Bíblia acessível e prática para o seu dia a dia. Encontre versículos, planos de leitura, e reflexões para guiá-lo(a) em cada passo. Que cada visita aqui seja uma oportunidade de renovação espiritual e paz.
-                        </Typography>
-                        
-                        
-                    </HorizontalBox>
-
-                    <VerticalBox>
-                        <Typography
-                        align="left"
-                        fontSize={30}
-                            sx={{
-                                fontFamily: "Playfair Display"
-                            }}
-                        >
-                            “A tua palavra é lâmpada para os meus pés e luz para o meu caminho.” - <strong>Salmos 119:105</strong>
-                        </Typography>
-                        <StyledButton>
-                            Leia Agora!
-                        </StyledButton>
-                    </VerticalBox>
+                    <Typography 
+                        variant="h2"
+                        sx={{
+                            fontFamily: 'Playfair Display',
+                            textShadow: '0px 0px 20px gray'
+                        }}
+                        align="center"
+                        color="#FFF1D9"
+                        fontSize={90}
+                        gutterBottom
+                    >
+                        Fonte de Vida
+                    </Typography>
+                    <StyledButton>
+                        Leia agora!
+                    </StyledButton>
                 </Container>
 
             </HeroSection>

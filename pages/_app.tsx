@@ -17,7 +17,7 @@ export default function MyApp(props: AppProps) {
             <Head>
                 <title>Fonte de Vida</title>
                 <link rel="icon" href="/images/barber-beauty-salon.ico" />
-                <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Quicksand:wght@300..700&display=swap" rel="stylesheet" />
+                <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400..900&family=Inria+Sans:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&family=Inria+Serif:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Quicksand:wght@300..700&display=swap" rel="stylesheet" />
             </Head>
             <TemplateDefault>
                 <ThemeProvider theme={theme}>
