@@ -34,7 +34,6 @@ export const StyledButton = styled.button`
     margin-top: 20px;
     font-size: 17px;
     font-family: "Quicksand";
-    box-shadow: 0px 0px 7px #FFF8E1;
     cursor: pointer;
     transition: all 200ms ease-in;
     width: 30%;

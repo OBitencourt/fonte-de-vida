@@ -1,7 +1,15 @@
 import { Container, Typography } from "@mui/material"
 import { HeroSection, StyledButton } from "./style"
 
+import { useRouter } from "next/router"
+
 const Hero = () => {
+    const router  = useRouter()
+
+    const handleRoute = (route: string) => {
+        router.push(route)
+    }
+
     return (
         <>
             <HeroSection>
@@ -28,7 +36,9 @@ const Hero = () => {
                     >
                         Fonte de Vida
                     </Typography>
-                    <StyledButton>
+                    <StyledButton
+                        onClick={() => handleRoute('/home')}
+                    >
                         Leia agora!
                     </StyledButton>
                 </Container>

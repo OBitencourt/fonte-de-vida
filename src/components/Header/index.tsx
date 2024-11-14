@@ -14,7 +14,6 @@ const Header = () => {
                 />             
                 <Navbar>
                     <StyledButton>
-
                         Versículo do Dia  
                     </StyledButton>
                     <StyledButton>
