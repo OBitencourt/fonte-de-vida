@@ -8,18 +8,10 @@ export const StyledMenuBar = styled.div<{ isOpen: boolean }>`
     margin: 7px;
     border-radius: 12px;
     padding: 10px;
-    transition: all 0.3s ease;
-    
-    ${({ isOpen }) => isOpen 
-    ? 
-    `
-        
-    ` : `
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-    
-    `}
+    display: flex;
+    flex-direction: column; /* Mantém sempre flex */
+    justify-content: center; /* Controla alinhamento */
+    transition: width 0.3s ease, justify-content 0.3s ease; /* Transição suave */
 `;
 
 
@@ -28,7 +20,7 @@ export const User = styled.div<{ isOpen: boolean }>`
     background-color: transparent;
     width: 90%;
     height: 50px;
-    margin: 60px 0; /* Margens fixas verticais */
+    margin: 5px 0; /* Margens fixas verticais */
     display: flex;
     justify-content: ${({ isOpen }) => (isOpen ? "flex-start" : "center")}; /* Ajusta a posição horizontal */
     align-items: center;
@@ -40,7 +32,7 @@ export const ButtonsWrapper = styled.div`
     width: 100%;
     flex-direction: column;
     align-items: center;
-     margin-top: 20px;
+    margin-top: 20px;
 `;
 
 export const MenuButton = styled.button<{ $isActive: boolean }>`
@@ -51,7 +43,8 @@ export const MenuButton = styled.button<{ $isActive: boolean }>`
     border-radius: 7px;
     display: flex;
     align-items: center;
-    transition: all 200ms ease;
+    justify-content: ${({ $isActive }) => ($isActive ? "flex-start" : "center")};
+    transition: all 0.3s ease;
     margin-bottom: 5px;
 
     &:hover {
@@ -86,7 +79,7 @@ export const TextDiv = styled.div`
     margin-left: 10px;
 `;
 
-export const ToggleButton = styled.button`
+export const ToggleButton = styled.button<{ isOpen: boolean }>`
     background: none;
     border: none;
     color: white;
@@ -94,9 +87,8 @@ export const ToggleButton = styled.button`
     position: absolute;
     top: 2%; /* Ajusta para o topo da barra */
     right: 10px; /* Desloca o botão para fora da barra */
-    
-    border-radius: .7em; /* Torna o botão redondo */
-    padding: 12px;
+    border-radius: 6px; /* Torna o botão redondo */
+    padding: ${({ isOpen }) => (isOpen ? "2px" : "12px")};
     font-size: 1.2rem;
     z-index: 10; /* Garante que fique acima de outros elementos */
     transition: all 0.3s ease;

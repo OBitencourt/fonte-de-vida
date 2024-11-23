@@ -24,7 +24,7 @@ const MenuBar = () => {
 
         
         <StyledMenuBar isOpen={isOpen}>
-            <ToggleButton onClick={toggleMenu}>
+            <ToggleButton isOpen={isOpen} onClick={toggleMenu}>
                 {isOpen ? <ArrowLeftIcon /> : <MenuIcon />}
             </ToggleButton>
             {isOpen ? (
@@ -122,25 +122,29 @@ const MenuBar = () => {
                     {isOpen && <TextDiv>Planos de Leitura</TextDiv>}
                 </MenuButton>
             </ButtonsWrapper>
+            
+            <div>
 
-            {isOpen && (
-                <Typography
-                    variant="h2"
-                    sx={{
-                        fontFamily: "Playfair Display",
-                        textShadow: "0px 0px 20px gray",
-                        position: "absolute",
-                        bottom: 0,
-                        width: "200px",
-                    }}
-                    align="center"
-                    color="#FFF1D9"
-                    fontSize={40}
-                    gutterBottom
-                >
-                    Fonte de Vida
-                </Typography>
-            )}
+                {isOpen && (
+                    <Typography
+                        variant="h2"
+                        sx={{
+                            fontFamily: "Playfair Display",
+                            textShadow: "0px 0px 20px gray",
+                            position: "absolute",
+                            bottom: 0,
+                            width: '90%',
+                            
+                        }}
+                        align="center"
+                        color="#FFF1D9"
+                        fontSize={30}
+                        gutterBottom
+                    >
+                        Fonte de Vida
+                    </Typography>
+                )}
+            </div>
         </StyledMenuBar>
     );
 };
