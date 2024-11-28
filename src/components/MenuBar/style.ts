@@ -36,7 +36,7 @@ export const ButtonsWrapper = styled.div`
 `;
 
 export const MenuButton = styled.button<{ $isActive: boolean , $isOpen: boolean}>`
-    width: ${({ $isOpen }) => ($isOpen ? "100%" : "85%")};
+    width: ${({ $isOpen }) => ($isOpen ? "95%" : "85%")};
     padding: ${({ $isOpen }) => ($isOpen ? "8px" : "8px")};
     border: none;
     cursor: pointer;

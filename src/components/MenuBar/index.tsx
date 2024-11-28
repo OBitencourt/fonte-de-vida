@@ -1,5 +1,4 @@
 import Image from "next/image";
-import { useState } from "react";
 import { ButtonsWrapper, MenuButton, StyledMenuBar, TextDiv, User, ToggleButton } from "./style";
 import { useRouter } from "next/router";
 import { Typography } from "@mui/material";
@@ -7,16 +6,17 @@ import Avatar from "@mui/material/Avatar";
 import MenuIcon from "@mui/icons-material/Menu";
 import ArrowLeftIcon from '@mui/icons-material/ArrowLeft';
 
-const MenuBar = () => {
-    const [isOpen, setIsOpen] = useState(true);
+interface MenuBarProps {
+    isOpen: boolean;
+    toggleMenu: () => void;
+}
+
+const MenuBar = ({ isOpen, toggleMenu }: MenuBarProps) => {
+    
     const router = useRouter();
 
     const handleRoute = (route: string) => {
         router.push(route);
-    };
-
-    const toggleMenu = () => {
-        setIsOpen(!isOpen);
     };
  
     return (

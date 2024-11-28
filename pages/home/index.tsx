@@ -39,10 +39,11 @@ const Home = () => {
                             fontFamily: 'Playfair Display'
                         }}
                         align='center'
-                        fontSize={80}
+                        fontSize={60}
                         gutterBottom
+                        color='#2D2923'
                     >
-                        Bible
+                        Bíblia
                     </Typography>
 
                 </Container>
