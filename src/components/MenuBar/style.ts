@@ -6,23 +6,23 @@ export const StyledMenuBar = styled.div<{ isOpen: boolean }>`
     height: 97vh;
     width: ${({ isOpen }) => (isOpen ? "250px" : "70px")};
     margin: 7px;
-    border-radius: 12px;
-    padding: 10px;
+    border-radius: 4px;
+    padding: 10px 10px 10px 10px;
     display: flex;
     flex-direction: column; /* Mantém sempre flex */
-    justify-content: center; /* Controla alinhamento */
+    justify-content: space-between; /* Controla alinhamento */
     transition: width 0.3s ease, justify-content 0.3s ease; /* Transição suave */
 `;
 
 
 
 export const User = styled.div<{ isOpen: boolean }>`
-    background-color: transparent;
+
     width: 90%;
     height: 50px;
-    margin: 5px 0; /* Margens fixas verticais */
+    margin: 0 auto;
     display: flex;
-    justify-content: ${({ isOpen }) => (isOpen ? "flex-start" : "center")}; /* Ajusta a posição horizontal */
+    justify-content: ${({ isOpen }) => (isOpen ? "center" : "center")}; /* Ajusta a posição horizontal */
     align-items: center;
     transition: all 0.3s ease;
 `;
@@ -32,24 +32,24 @@ export const ButtonsWrapper = styled.div`
     width: 100%;
     flex-direction: column;
     align-items: center;
-    margin-top: 20px;
+    margin-top: 30px;
 `;
 
-export const MenuButton = styled.button<{ $isActive: boolean }>`
-    width: 100%;
-    padding: 12px;
+export const MenuButton = styled.button<{ $isActive: boolean , $isOpen: boolean}>`
+    width: ${({ $isOpen }) => ($isOpen ? "100%" : "85%")};
+    padding: ${({ $isOpen }) => ($isOpen ? "8px" : "8px")};
     border: none;
     cursor: pointer;
-    border-radius: 7px;
+    border-radius: 4px;
     display: flex;
     align-items: center;
-    justify-content: ${({ $isActive }) => ($isActive ? "flex-start" : "center")};
+    justify-content: ${({ $isActive }) => ($isActive ? "center" : "center")};
     transition: all 0.3s ease;
-    margin-bottom: 5px;
-
+    margin: 5px auto;
+ 
     &:hover {
         background-color: #765d54;
-    }
+    } 
 
     ${({ $isActive }) =>
         $isActive
@@ -84,15 +84,20 @@ export const ToggleButton = styled.button<{ isOpen: boolean }>`
     border: none;
     color: white;
     cursor: pointer;
-    position: absolute;
+    width: ${({ isOpen }) => (isOpen ? "10%" : "80%")};
     top: 2%; /* Ajusta para o topo da barra */
-    right: 10px; /* Desloca o botão para fora da barra */
-    border-radius: 6px; /* Torna o botão redondo */
-    padding: ${({ isOpen }) => (isOpen ? "2px" : "12px")};
+    border-radius: 4px; /* Torna o botão redondo */
+    padding: ${({ isOpen }) => (isOpen ? "2px" : "8px")};
     font-size: 1.2rem;
     z-index: 10; /* Garante que fique acima de outros elementos */
     transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    align-self: flex-end;
+    margin: ${({ isOpen }) => (isOpen ? "0px" : "0 auto")};
 
+    
     &:hover {
         background-color: white;
         color: #8e7065;

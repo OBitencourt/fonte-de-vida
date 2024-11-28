@@ -42,7 +42,7 @@ const Home = () => {
                         fontSize={80}
                         gutterBottom
                     >
-                        Bíblia
+                        Bible
                     </Typography>
 
                 </Container>
@@ -55,7 +55,7 @@ const Home = () => {
                                 fontFamily: 'Inria Sans'
                             }}
                         >   
-                            Antigo Testamento
+                            Old Testament
                         </Typography>
                     </BooksWrapper>
                     <BooksWrapper>
@@ -65,7 +65,7 @@ const Home = () => {
                                 fontFamily: 'Inria Sans'
                             }}
                         >   
-                            Novo Testamento
+                            New Testament
                         </Typography>
                     </BooksWrapper>
                 </Wrapper>

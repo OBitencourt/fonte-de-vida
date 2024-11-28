@@ -19,59 +19,46 @@ const MenuBar = () => {
         setIsOpen(!isOpen);
     };
  
-
     return (
 
         
         <StyledMenuBar isOpen={isOpen}>
+            
             <ToggleButton isOpen={isOpen} onClick={toggleMenu}>
                 {isOpen ? <ArrowLeftIcon /> : <MenuIcon />}
             </ToggleButton>
-            {isOpen ? (
-                <User isOpen={isOpen}>
-                    <Avatar
-                        sx={{
-                            bgcolor: "white",
-                            color: "#765D54",
-                            width: 37,
-                            height: 37,
-                            marginRight: 1,
-                            
-                        }}
-                    >
-                        N
-                    </Avatar>
-                    <Typography
-                        color="white"
-                        sx={{
-                            fontFamily: "Inria Sans",
-                        }}
-                    >
-                        userficticio@hotmail.com
-                    </Typography>
-                </User>
-            )
+            
 
-            : (
-                <Avatar
+            {isOpen ? (
+                <Typography
+                    variant="h2"
                     sx={{
-                        bgcolor: "white",
-                        color: "#765D54",
-                        width: 50,
-                        height: 50,
-                        marginRight: 1,
+                        fontFamily: "Playfair Display",
+                        textShadow: "0px 0px 20px gray",
+                        position: 'absolute',
+                        width: '120px',
+                        left: '25%'
                     }}
+                    align="center"
+                    color="#FFF1D9"
+                    fontSize={30}
+                    
                 >
-                    N
-                </Avatar>
-            )
-        
+                    Fonte de Vida
+                </Typography>
+                )
+
+                : null
+            
             }
+           
+            
 
             <ButtonsWrapper>
                 <MenuButton
                     onClick={() => handleRoute("/home")}
                     $isActive={router.pathname === "/home"}
+                    $isOpen={isOpen}
                 >
                     <Image
                         src={
@@ -88,6 +75,7 @@ const MenuBar = () => {
                 <MenuButton
                     onClick={() => handleRoute("/study")}
                     $isActive={router.pathname === "/study"}
+                    $isOpen={isOpen}
                 >
                     <Image
                         src="/images/study-white.png"
@@ -100,6 +88,7 @@ const MenuBar = () => {
                 <MenuButton
                     onClick={() => handleRoute("/dayverse")}
                     $isActive={router.pathname === "/dayverse"}
+                    $isOpen={isOpen}
                 >
                     <Image
                         src="/images/day-white.png"
@@ -112,6 +101,7 @@ const MenuBar = () => {
                 <MenuButton
                     onClick={() => handleRoute("/plans")}
                     $isActive={router.pathname === "/plans"}
+                    $isOpen={isOpen}
                 >
                     <Image
                         src="/images/plans-white.png"
@@ -123,28 +113,49 @@ const MenuBar = () => {
                 </MenuButton>
             </ButtonsWrapper>
             
-            <div>
-
-                {isOpen && (
-                    <Typography
-                        variant="h2"
+            
+            
+            
+            {isOpen ? (
+                <User isOpen={isOpen}>
+                    <Avatar
                         sx={{
-                            fontFamily: "Playfair Display",
-                            textShadow: "0px 0px 20px gray",
-                            position: "absolute",
-                            bottom: 0,
-                            width: '90%',
-                            
+                            bgcolor: "white",
+                            color: "#765D54",
+                            width: 37,
+                            height: 37,
+                            marginRight: 1,
+                            fontSize: '15px'
                         }}
-                        align="center"
-                        color="#FFF1D9"
-                        fontSize={30}
-                        gutterBottom
                     >
-                        Fonte de Vida
+                        N
+                    </Avatar>
+                    <Typography
+                        color="white"
+                        sx={{
+                            fontFamily: "Inria Sans",
+                        }}
+                    >
+                        user@hotmail.com
                     </Typography>
-                )}
-            </div>
+                </User>
+            )
+
+            : (
+                <Avatar
+                    sx={{
+                        bgcolor: "white",
+                        color: "#765D54",
+                        width: 40,
+                        height: 40,
+                        margin: '0 auto'
+                    }}
+                >
+                    N
+                </Avatar>
+            )
+        
+            }
         </StyledMenuBar>
     );
 };
