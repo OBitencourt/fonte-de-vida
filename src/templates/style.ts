@@ -9,7 +9,7 @@ export const ContentWrapper = styled.div<{ isOpen: boolean }>`
     margin: 9px 9px 9px ${({ isOpen }) => (isOpen ? "270px" : "90px")};
     border-radius: 4px;
     padding: 20px;
-    height: 97vh;
+    min-height: 97vh;
     background-color: white;
     transition: margin 0.3s ease;
 

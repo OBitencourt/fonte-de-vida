@@ -10,7 +10,7 @@ export const Wrapper = styled.div`
 export const BooksWrapper = styled.div`
     width: 49%;
     background-color: #8E7065;
-    height: 305px;
+    min-height: 330px;
     border-radius: 2px;
     padding: 20px;
     color: white;
