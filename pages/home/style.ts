@@ -22,11 +22,12 @@ export const Book = styled.div`
     min-height: 30px;
     color: #2D2923;
     display: flex;
-    padding: 8px;
+    padding: 4px;
     justify-content: center;
     align-items: center;
     font-size: 12px;
     border-radius: 2px;
     margin: 3px;
     text-align: center;
+    cursor: pointer;
 `

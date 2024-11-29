@@ -3,6 +3,7 @@ import axios from 'axios';
 import { useState, useEffect } from 'react';
 import Select from 'react-select';
 import { StylesConfig, GroupBase } from 'react-select';
+import { useRouter } from 'next/router';
 
 import TemplateDash from '@/src/templates/Dash'
 import { Book, BooksWrapper, Wrapper } from './style';
@@ -12,8 +13,14 @@ type OptionType = {
     label: string;
 };
 
+type Bible = {
+    id: string;  
+    name: string;  // O nome do livro também é uma string
+};
+
 type Book = {
-    id: string;  // O ID é uma string (geralmente no formato de um UUID ou identificador único)
+    bibleId: string,
+    id: string;  
     name: string;  // O nome do livro também é uma string
 };
 
@@ -32,10 +39,10 @@ const oldTestamentBooks = [
 const newTestamentBooks = [
     'MAT', 'MRK', 'LUK', 'JHN', 'ACT', 'ROM', '1CO', '2CO', 'GAL', 'EPH', 'PHP', 'COL', '1TH', 
     '2TH', '1TI', '2TI', 'TIT', 'PHM', 'HEB', 'JAS', '1PE', '2PE', '1JN', '2JN', '3JN', 'JUD', 'REV'
-    // Adicione mais IDs conforme necessário
 ];
 
 const Home = () => {
+    const router = useRouter()
     
     const [options, setOptions] = useState([
         
@@ -53,7 +60,7 @@ const Home = () => {
             }
         })
         .then((response) => {
-            const formattedOptions = response.data.data.map((bible) => ({
+            const formattedOptions = response.data.data.map((bible: Bible) => ({
                 value: bible.id,
                 label: bible.name,
             }));
@@ -75,17 +82,20 @@ const Home = () => {
             })
             .then(response => {
                 const books = response.data.data;
-                console.log(books)
-
-                // Mapear os livros para ID e nome
+                
                 const formattedBooks = books.map((book: Book) => ({
-                    value: book.id, // ID do livro
-                    label: book.name // Nome do livro
+                    bibleId: book.bibleId, // Bible ID
+                    value: book.id, // Book ID
+                    label: book.name // Book name
                 }));
+                
+                console.log(formattedBooks)
+                
 
-                // Divisão dos livros usando IDs
-                const oldBooks = formattedBooks.filter((book: Book) => oldTestamentBooks.includes(book.value));
+                const oldBooks = formattedBooks.filter((book) => oldTestamentBooks.includes(book.value));
+
                 const newBooks = formattedBooks.filter(book => newTestamentBooks.includes(book.value));
+
                 const additional = formattedBooks.filter(book => !oldTestamentBooks.includes(book.value) && !newTestamentBooks.includes(book.value));
 
                 // Atualizando o estado com os livros categorizados
@@ -100,12 +110,21 @@ const Home = () => {
         }
     }, [selectedOption]);
     
-    // Função para capturar a seleção
     const handleChange = (selected) => {
         setSelectedOption(selected);
     };
+    
+    const handleBookClick = book => {
+        router.push({
+            pathname: `/home/${book.label}`,
+            query: {
+                id: book.value,
+                bibleId: book.bibleId,
+                label: book.label
+            }
+        })
+    }
 
-    // Estilização customizada do Select
     const customStyles: StylesConfig<OptionType, false, GroupBase<OptionType>> = {
         control: (base, state) => ({
             ...base,
@@ -225,7 +244,11 @@ const Home = () => {
                                 ? (
 
                                     oldTestament.map(book => (
-                                        <Book key={book.id}>
+                                        
+                                        <Book 
+                                            key={book.id}
+                                            onClick={() => handleBookClick(book)}
+                                        >
                                             {book.label}
                                         </Book>
                                     ))
@@ -254,7 +277,10 @@ const Home = () => {
                                 ? (
 
                                     newTestament.map(book => (
-                                        <Book key={book.id}>
+                                        <Book 
+                                            onClick={() => handleBookClick(book)}
+                                            key={book.id}
+                                        >
                                             {book.label}
                                         </Book>
                                     ))
