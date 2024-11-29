@@ -15,3 +15,18 @@ export const BooksWrapper = styled.div`
     padding: 20px;
     color: white;
 `
+
+export const Book = styled.div`
+    width: 31%;
+    background-color: white;
+    min-height: 30px;
+    color: #2D2923;
+    display: flex;
+    padding: 8px;
+    justify-content: center;
+    align-items: center;
+    font-size: 12px;
+    border-radius: 2px;
+    margin: 3px;
+    text-align: center;
+`

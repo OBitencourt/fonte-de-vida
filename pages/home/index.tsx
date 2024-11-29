@@ -5,19 +5,46 @@ import Select from 'react-select';
 import { StylesConfig, GroupBase } from 'react-select';
 
 import TemplateDash from '@/src/templates/Dash'
-import { BooksWrapper, Wrapper } from './style';
+import { Book, BooksWrapper, Wrapper } from './style';
 
 type OptionType = {
     value: string;
     label: string;
 };
 
+type Book = {
+    id: string;  // O ID é uma string (geralmente no formato de um UUID ou identificador único)
+    name: string;  // O nome do livro também é uma string
+};
+
+const oldTestamentBooks = [
+    'GEN', 'EXO', 'LEV', 'NUM', 'DEU', 
+    'JOS', 'JDG', 'RUT', '1SA', '2SA',  
+    '1KI', '2KI', '1CH', '2CH', 'EZR', 
+    'NEH', 'EST', 'JOB', 'PSA', 'PRO', 
+    'ECC', 'SNG', 'ISA', 'JER', 'LAM',  
+    'EZK', 'DAN', 'HOS', 'JOL', 'AMO',  
+    'OBA', 'JON', 'MIC', 'NAM', 'HAB',   
+    'ZEP', 'HAG', 'ZEC', 'MAL'            
+];
+
+
+const newTestamentBooks = [
+    'MAT', 'MRK', 'LUK', 'JHN', 'ACT', 'ROM', '1CO', '2CO', 'GAL', 'EPH', 'PHP', 'COL', '1TH', 
+    '2TH', '1TI', '2TI', 'TIT', 'PHM', 'HEB', 'JAS', '1PE', '2PE', '1JN', '2JN', '3JN', 'JUD', 'REV'
+    // Adicione mais IDs conforme necessário
+];
 
 const Home = () => {
     
     const [options, setOptions] = useState([
         
     ]);
+    const [selectedOption, setSelectedOption] = useState(null);
+    const [oldTestament, setOldTestament] = useState([]);
+    const [newTestament, setNewTestament] = useState([]);
+    const [additionalBooks, setAdditionalBooks] = useState([]); // for additional uncanon books
+
 
     useEffect(() => {
         axios.get('https://api.scripture.api.bible/v1/bibles', {
@@ -31,18 +58,48 @@ const Home = () => {
                 label: bible.name,
             }));
             setOptions(formattedOptions);
-
+            
         })
         .catch((error) => {
             console.error(error);
             
-            });
+        });
     }, []);
 
-    console.log(options)
+    useEffect(() => {
+        if (selectedOption) {
+            axios.get(`https://api.scripture.api.bible/v1/bibles/${selectedOption.value}/books`, {
+                headers: {
+                    'api-key': '11d3d3f880c4f4606e9e0d4cd6e63556'
+                }
+            })
+            .then(response => {
+                const books = response.data.data;
+                console.log(books)
 
-    const [selectedOption, setSelectedOption] = useState(null);
+                // Mapear os livros para ID e nome
+                const formattedBooks = books.map((book: Book) => ({
+                    value: book.id, // ID do livro
+                    label: book.name // Nome do livro
+                }));
 
+                // Divisão dos livros usando IDs
+                const oldBooks = formattedBooks.filter((book: Book) => oldTestamentBooks.includes(book.value));
+                const newBooks = formattedBooks.filter(book => newTestamentBooks.includes(book.value));
+                const additional = formattedBooks.filter(book => !oldTestamentBooks.includes(book.value) && !newTestamentBooks.includes(book.value));
+
+                // Atualizando o estado com os livros categorizados
+                setOldTestament(oldBooks);
+                setNewTestament(newBooks);
+                setAdditionalBooks(additional);
+
+            })
+            .catch((error) => {
+                console.error(error);
+            });
+        }
+    }, [selectedOption]);
+    
     // Função para capturar a seleção
     const handleChange = (selected) => {
         setSelectedOption(selected);
@@ -154,21 +211,59 @@ const Home = () => {
                         <Typography
                             align='center'
                             sx={{
-                                fontFamily: 'Inria Sans'
+                                fontFamily: 'Inria Sans',
+                                mb: 2
                             }}
                         >   
-                            Old Testament
+                            Antigo Testamento
                         </Typography>
+                        <div style={{width: '100%', display: 'flex', flexWrap: 'wrap', justifyContent: 'center'}}>
+
+                            {
+                                oldTestament 
+                                
+                                ? (
+
+                                    oldTestament.map(book => (
+                                        <Book key={book.id}>
+                                            {book.label}
+                                        </Book>
+                                    ))
+                                )
+                                
+                                : null
+                            }
+
+                        </div>
                     </BooksWrapper>
                     <BooksWrapper>
                     <Typography
                             align='center'
                             sx={{
-                                fontFamily: 'Inria Sans'
+                                fontFamily: 'Inria Sans',
+                                mb: 2
                             }}
                         >   
-                            New Testament
+                            Novo Testamento
                         </Typography>
+                        <div style={{width: '100%', display: 'flex', flexWrap: 'wrap', justifyContent: 'center'}}>
+
+                            {
+                                newTestament 
+                                
+                                ? (
+
+                                    newTestament.map(book => (
+                                        <Book key={book.id}>
+                                            {book.label}
+                                        </Book>
+                                    ))
+                                )
+                                
+                                : null
+                            }
+
+                        </div>
                     </BooksWrapper>
                 </Wrapper>
             </TemplateDash>
