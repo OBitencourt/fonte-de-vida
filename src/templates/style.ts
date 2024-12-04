@@ -6,7 +6,7 @@ export const LayoutWrapper = styled.div`
 
 export const ContentWrapper = styled.div<{ isOpen: boolean }>`
     flex-grow: 1;
-    margin: 9px 9px 9px ${({ isOpen }) => (isOpen ? "270px" : "90px")};
+    margin: 9px 9px 9px ${({ isOpen }) => (isOpen ? "250px" : "90px")};
     border-radius: 4px;
     padding: 20px;
     min-height: 97vh;

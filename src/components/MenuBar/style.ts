@@ -4,7 +4,7 @@ export const StyledMenuBar = styled.div<{ isOpen: boolean }>`
     background-color: #8E7065;
     position: fixed;
     height: 97vh;
-    width: ${({ isOpen }) => (isOpen ? "250px" : "70px")};
+    width: ${({ isOpen }) => (isOpen ? "230px" : "70px")};
     margin: 7px;
     border-radius: 4px;
     padding: 10px 10px 10px 10px;
