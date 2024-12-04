@@ -57,12 +57,12 @@ const MenuBar = ({ isOpen, toggleMenu }: MenuBarProps) => {
             <ButtonsWrapper>
                 <MenuButton
                     onClick={() => handleRoute("/home")}
-                    $isActive={router.pathname === "/home"}
+                    $isActive={router.pathname.startsWith("/home")}
                     $isOpen={isOpen}
                 >
                     <Image
                         src={
-                            router.pathname === "/home"
+                            router.pathname.startsWith("/home")
                                 ? "/images/home-brown.png"
                                 : "/images/home-white.png"
                         }

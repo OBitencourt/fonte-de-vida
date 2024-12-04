@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import MenuBar from "../components/MenuBar";
 import { LayoutWrapper, ContentWrapper } from './style'
 
@@ -12,7 +12,21 @@ interface DefaultProps {
   const Dash = ({ children }: DefaultProps) => {
     const [isOpen, setIsOpen] = useState(true);
 
-    const toggleMenu = () => setIsOpen((isOpen) => !isOpen);
+    useEffect(() => {
+      // Recupera o estado de 'isOpen' do localStorage ao carregar o componente
+      const savedState = localStorage.getItem("menuIsOpen");
+      if (savedState !== null) {
+          setIsOpen(JSON.parse(savedState)); // Converte para boolean
+      }
+  }, []);
+
+    const toggleMenu = () => {
+      setIsOpen((prev) => {
+          const newState = !prev;
+          localStorage.setItem("menuIsOpen", JSON.stringify(newState)); // Salva no localStorage
+          return newState;
+      });
+    };
 
     return (
       <LayoutWrapper>
