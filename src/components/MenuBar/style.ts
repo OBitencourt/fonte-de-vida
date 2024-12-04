@@ -33,6 +33,9 @@ export const ButtonsWrapper = styled.div`
     flex-direction: column;
     align-items: center;
     margin-top: 30px;
+    border-top: 1px solid white;
+    border-bottom: 1px solid white;
+    padding: 8px 0;
 `;
 
 export const MenuButton = styled.button<{ $isActive: boolean , $isOpen: boolean}>`

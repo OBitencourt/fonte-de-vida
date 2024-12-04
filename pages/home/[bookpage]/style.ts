@@ -14,4 +14,5 @@ export const Chapter = styled.div`
     background-color: #8E7065;
     text-align: center;
     font-size: 12px;
+    cursor: pointer;
 `

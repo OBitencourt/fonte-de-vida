@@ -34,7 +34,20 @@ const Book = () => {
     }, [])
 
 
-    console.log(chapters)
+    const handleChapterClick = chapter => {
+        console.log(chapter)
+
+        router.push({
+            pathname: `/home/${bookpage}/${chapter.id}`,
+            query: {
+                id: chapter.id,
+                bibleId: chapter.bibleId,
+                reference: chapter.reference,
+                number: chapter.number
+            }
+        })
+    }
+
     return (
         <>
             <TemplateDash>
@@ -55,7 +68,10 @@ const Book = () => {
                         {
                             chapters.map((chapter) => (
 
-                                <Chapter key={chapter.id}>
+                                <Chapter
+                                    key={chapter.id}
+                                    onClick={() => handleChapterClick(chapter)}
+                                >
                                     {chapter.reference}
                                 </Chapter>
                             ))
