@@ -14,6 +14,11 @@ export const BooksWrapper = styled.div`
     border-radius: 2px;
     padding: 20px;
     color: white;
+    transition: all 200ms ease-in;
+
+    &:hover {
+        transform: scale(1.007);
+    }
 `
 
 export const Book = styled.div`
@@ -30,4 +35,21 @@ export const Book = styled.div`
     margin: 3px;
     text-align: center;
     cursor: pointer;
+    transition: all 200ms ease;
+
+    &:hover {
+        filter: brightness(0.95);
+        transform: scale(1.02);
+    }
+`
+
+export const SelectWrapper = styled.div`
+    width: 20%;
+    margin-bottom: 10px;
+    transition: all 200ms ease-in;
+
+    &:hover {
+        
+        transform: scale(1.02);
+    }
 `

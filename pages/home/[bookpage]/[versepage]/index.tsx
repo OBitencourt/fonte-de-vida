@@ -4,7 +4,8 @@ import axios from "axios"
 
 import TemplateDash from "@/src/templates/Dash"
 import { Typography } from "@mui/material"
-import { NextButton, PrevButton } from "./style"
+import { Back, NextButton, PrevButton } from "./style"
+import Image from "next/image"
 
 const Chapter = () => {
 
@@ -13,6 +14,7 @@ const Chapter = () => {
     const { id, bibleId, reference, number } = router.query
 
     const [verses, setVerses] = useState([])
+    const [moreVerses, setMoreVerses] = useState(true)
 
 
     console.log(router.query)
@@ -112,8 +114,12 @@ const Chapter = () => {
                         number: newChapterNumber,
                     },
                 });
+
+                setMoreVerses(true)
             } else {
+                setMoreVerses(false)
                 alert("Não há mais capítulos.");
+
             }
         } catch (error) {
             console.error("Erro ao navegar para o capítulo:", error);
@@ -124,19 +130,27 @@ const Chapter = () => {
 
         <>
             <TemplateDash>
+                <Back onClick={() => history.back()}>
+                    <Image 
+                        src='/images/arrow-return.svg'
+                        alt="return-arrow"
+                        width={15}
+                        height={15}
+                    />
+                </Back>
                 <Typography
-                    fontSize={30}
+                    fontSize={35}
+                    fontWeight={500}
                     sx={{
                         
                         fontFamily: 'Playfair Display',
                         mb: 3,
-                        padding: '10px'
                     }}
                 >
                     {reference} - Cap {number}
                 </Typography>
 
-                <div style={{marginBottom: '24px', padding: '10px'}}>
+                <div style={{marginBottom: '24px',}}>
                     {verses.map((verse, index) => (
                         <p key={index} style={{ marginBottom: '-4px'}}>
                         <span style={{ fontWeight: "bold", marginRight: "12px", fontFamily: 'Judson'}}>
@@ -151,7 +165,7 @@ const Chapter = () => {
                 </div>
 
                 <div style={{display: 'flex', justifyContent: 'space-between'}}>
-                    <PrevButton onClick={() => handleNavigation("prev")}>
+                    <PrevButton $moreVerses={router.query.number === '0' || router.query.number === 'intro' ? false : true} onClick={() => handleNavigation("prev")}>
                         Anterior
                     </PrevButton>
                     <NextButton onClick={() => handleNavigation("next")}>

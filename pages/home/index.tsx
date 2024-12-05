@@ -6,7 +6,7 @@ import { StylesConfig, GroupBase } from 'react-select';
 import { useRouter } from 'next/router';
 
 import TemplateDash from '@/src/templates/Dash'
-import { Book, BooksWrapper, Wrapper } from './style';
+import { Book, BooksWrapper, SelectWrapper, Wrapper } from './style';
 
 type OptionType = {
     value: string;
@@ -227,7 +227,7 @@ const Home = () => {
                         Versão:
                     </Typography>
                 </label>
-                <div style={{width: '20%', marginBottom: '10px'}}>
+                <SelectWrapper >
 
                     <Select
                         options={options}
@@ -237,7 +237,7 @@ const Home = () => {
                         isSearchable                        
                         menuShouldScrollIntoView={false}
                     />
-                </div>
+                </SelectWrapper>
                 
                 <Wrapper>
                 

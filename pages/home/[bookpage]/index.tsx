@@ -5,7 +5,8 @@ import axios from "axios"
 
 import { useRouter } from "next/router"
 import { useEffect, useState } from "react"
-import { Chapter, ChaptersWrapper } from "./style"
+import { Back, Chapter, ChaptersWrapper } from "./style"
+import Image from "next/image"
 
 type Chapter = {
     id: string
@@ -52,6 +53,15 @@ const Book = () => {
         <>
             <TemplateDash>
                 <Container maxWidth='lg'>
+
+                    <Back onClick={() => history.back()}>
+                        <Image 
+                            src='/images/arrow-return.svg'
+                            width={15}
+                            height={15}
+                            alt="arrow-return"
+                        />
+                    </Back>
 
                     <Typography
                         fontSize={40}
