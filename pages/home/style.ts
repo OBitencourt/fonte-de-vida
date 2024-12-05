@@ -8,7 +8,7 @@ export const Wrapper = styled.div`
 `
 
 export const BooksWrapper = styled.div`
-    width: 49%;
+    width: 49.6%;
     background-color: #8E7065;
     min-height: 330px;
     border-radius: 2px;

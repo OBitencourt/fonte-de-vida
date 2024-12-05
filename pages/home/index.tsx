@@ -24,6 +24,8 @@ type Book = {
     name: string;  // O nome do livro também é uma string
 };
 
+const DEFAULT_BIBLE_ID = '06125adad2d5898a-01';
+
 const oldTestamentBooks = [
     'GEN', 'EXO', 'LEV', 'NUM', 'DEU', 
     'JOS', 'JDG', 'RUT', '1SA', '2SA',  
@@ -65,6 +67,11 @@ const Home = () => {
                 label: bible.name,
             }));
             setOptions(formattedOptions);
+
+            const defaultBible = formattedOptions.find((option) => option.value === DEFAULT_BIBLE_ID);
+            if (defaultBible) {
+                setSelectedOption(defaultBible);
+            }
             
         })
         .catch((error) => {
@@ -129,7 +136,7 @@ const Home = () => {
         control: (base, state) => ({
             ...base,
             background: '#695148',
-            borderRadius: '4px',
+            borderRadius: '2px',
             borderColor: state.isFocused ? '#765D54' : 'transparent',        
             padding: '2px',
             fontFamily: 'Inria Sans',
@@ -148,7 +155,7 @@ const Home = () => {
         menu: (base) => ({
             ...base,
             background: 'white',
-            borderRadius: '8px',
+            borderRadius: '4px',
             boxShadow: '0px 4px 10px rgba(0, 0, 0, 0.1)',
             zIndex: 5,
             maxHeight: '150px', // Altura máxima do menu
@@ -210,14 +217,22 @@ const Home = () => {
                     </Typography>
 
                 </Container>
+                
+                <label>
+                    <Typography
+                        sx={{fontFamily: 'Judson'}}
+                        gutterBottom
+                    >
 
+                        Versão:
+                    </Typography>
+                </label>
                 <div style={{width: '20%', marginBottom: '10px'}}>
 
                     <Select
                         options={options}
                         value={selectedOption}
                         onChange={handleChange}
-                        placeholder="Versão"
                         styles={customStyles}
                         isSearchable                        
                         menuShouldScrollIntoView={false}
